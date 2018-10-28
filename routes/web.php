@@ -18,6 +18,7 @@ Route::get('/', function () {
 Route::get('/', 'PagesController@index');
 
 Auth::routes();
+Route::get('/films', 'FilmController@index')->name('home');
 
 Route::get('/home', 'HomeController@index')->name('home');
 

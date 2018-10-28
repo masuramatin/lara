@@ -49,7 +49,7 @@
                             <li><a href="{{ route('register') }}">Register</a></li>
 
                         @else
-                            <li><a href="{{action('HomeController@index')}}">Dashboard</a></li>
+                            <li><a href="{{action('PagesController@index')}}">Home</a></li>
 
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\film;
 use Session;
+use App\Http\Resources\film as filmResource;
+use App\Http\Requests;
+
 class FilmController extends Controller
 {
     /**
@@ -15,6 +18,11 @@ class FilmController extends Controller
     public function index()
     {
         //
+        // Get Films
+        $films = film::paginate(1);
+
+        // Return collection of articles as a resource
+        return filmResource::collection($films);
     }
 
     /**
@@ -57,6 +65,8 @@ class FilmController extends Controller
         $film->photo = $input['imagename'];
         $film->save();
         Session::flash('flash_message1', 'Information has been added!');
+        //inserted data in json format
+        //return new filmResource($film);
         return redirect('/')->with('success', 'Information has been added');        
     }
 
@@ -71,6 +81,9 @@ class FilmController extends Controller
         //
         //search film information using id
         $film = film::find($id);
+
+        // Return single article as a resource
+        //return new filmResource($film);        
         //send searched information to view
         return view('film.show',compact('film','id'));           
     }
@@ -118,6 +131,8 @@ class FilmController extends Controller
         $film->photo = $input['imagename'];
         $film->save();
         Session::flash('flash_message', 'Information has been updated!');
+        //updated data in json format
+        //return new filmResource($film);        
         return redirect('/home')->with('success', 'Information has been added');              
     }
 
@@ -133,6 +148,8 @@ class FilmController extends Controller
         $film = film::find($id);
         $film->delete();
         Session::flash('flash_message', 'Information has been deleted!');
+        //deleted record in json format
+        //return new filmResource($film); 
         return redirect('/home');      
     
     }
