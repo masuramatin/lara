@@ -7,7 +7,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Dashboard</div>
-                <!--
+                
                 <div class="panel-body">
                     @if (session('status'))
                         <div class="alert alert-success">
@@ -17,11 +17,11 @@
 
                     You are logged in!
                 </div>
-            -->
+            
             </div>
         </div>
     </div>
-
+   @if (Auth::user()->email=='admin@gmail.com') 
    <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
@@ -60,6 +60,7 @@
                 </div>
             </div>
         </div>
-    </div>    
+    </div>   
+    @endif 
 </div>
 @endsection

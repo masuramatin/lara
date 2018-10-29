@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\film;
+use App\comment;
+
 use Session;
 use App\Http\Resources\film as filmResource;
 use App\Http\Requests;
-
+use DB;
 class FilmController extends Controller
 {
     /**
@@ -19,10 +21,13 @@ class FilmController extends Controller
     {
         //
         // Get Films
-        $films = film::paginate(1);
+        $films = film::all();
 
         // Return collection of articles as a resource
-        return filmResource::collection($films);
+        $films=filmResource::collection($films);
+
+        return view('film.display', compact('films'));
+
     }
 
     /**
@@ -86,6 +91,14 @@ class FilmController extends Controller
         //return new filmResource($film);        
         //send searched information to view
         return view('film.show',compact('film','id'));           
+    }
+    function getFilm($id){
+        //print $id;
+        $comments = comment::all();
+        $films=DB::table('films')->
+        where('name', $id)->get();    
+        
+        return view('film.film_how',compact('films','comments'));         
     }
 
     /**

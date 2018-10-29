@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Home') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -29,7 +29,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        {{ config('app.name', 'Home') }}
                     </a>
                 </div>
 
@@ -43,6 +43,9 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @guest
+                            <li><a href="{{action('PagesController@index')}}">Home</a></li>
+                            <li><a href="{{action('FilmController@index')}}">Films</a></li>
+
                             <li><a href="{{action('FilmController@create')}}">New Film</a></li>
 
                             <li><a href="{{ route('login') }}">Login</a></li>
@@ -50,7 +53,9 @@
 
                         @else
                             <li><a href="{{action('PagesController@index')}}">Home</a></li>
+                            <li><a href="{{action('FilmController@index')}}">Films</a></li>
 
+                            <li><a href="{{action('FilmController@create')}}">New Film</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
